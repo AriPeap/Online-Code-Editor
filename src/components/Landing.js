@@ -41,6 +41,7 @@ const Landing = () => {
       handleCompile();
     }
   }, [ctrlPress, enterPress]);
+
   const onChange = (action, data) => {
     switch (action) {
       case "code": {
@@ -52,7 +53,9 @@ const Landing = () => {
       }
     }
   };
+
   const handleCompile = () => {
+    console.log(process.env.REACT_APP_RAPID_API_KEY);
     setProcessing(true);
     const formData = {
       language_id: language.id,
@@ -62,13 +65,13 @@ const Landing = () => {
     };
     const options = {
       method: "POST",
-      url: "https://judge0-ce.p.rapidapi.com/submissions",
+      url: process.env.REACT_APP_RAPID_API_URL,
       params: { base64_encoded: "true", fields: "*" },
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        "X-RapidAPI-Key": "bca3772d77msh07d97034bdf836ap1a7e51jsne86cca88ebb1",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
       },
       data: formData,
     };
@@ -101,11 +104,11 @@ const Landing = () => {
   const checkStatus = async (token) => {
     const options = {
       method: "GET",
-      url: `https://judge0-ce.p.rapidapi.com/submissions/${token}`,
+      url: `${process.env.REACT_APP_RAPID_API_URL}/${token}`,
       params: { base64_encoded: "true", fields: "*" },
       headers: {
-        "X-RapidAPI-Key": "bca3772d77msh07d97034bdf836ap1a7e51jsne86cca88ebb1",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
       },
     };
     try {
