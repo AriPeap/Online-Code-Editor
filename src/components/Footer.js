@@ -33,7 +33,7 @@ const Footer = () => {
         </svg>{" "}
         by{" "}
         <a
-          href="https://manuarora.in"
+          href="https://www.linkedin.com/in/yh627/"
           target="__blank"
           className="text-gray-700  hover:bg-red-500 hover:text-white font-medium"
         >
